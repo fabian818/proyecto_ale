@@ -1,0 +1,15 @@
+<div class="row">
+
+<%= form_tag({controller: 'security', action: 'login'}, method: 'post', role: 'form') do %>
+<div class="row">
+	<div class="col-md-6">
+	<%= text_field_tag :username %>
+	</div>	
+	<div class="col-md-6">
+	<%= text_field_tag :password %>
+	</div>
+	<%= submit_tag 'Ingresar', class: 'btn' %>
+
+</div>
+<% end %>
+</div>

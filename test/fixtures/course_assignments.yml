@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  teacher_id: 
+  course_id: 
+  schedule: MyString
+  hours_quantity: 1
+  init_date: 2014-11-23
+
+two:
+  teacher_id: 
+  course_id: 
+  schedule: MyString
+  hours_quantity: 1
+  init_date: 2014-11-23

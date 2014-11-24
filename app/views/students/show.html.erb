@@ -1,0 +1,91 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre de usuario:</strong>
+  <%= @student.user.username %>
+</p>
+<p>
+  <strong>Nombre:</strong>
+  <%= @student.user.name %>
+</p>
+
+<p>
+  <strong>Apellido:</strong>
+  <%= @student.user.lastname %>
+</p>
+
+<p>
+  <strong>DNI:</strong>
+  <%= @student.user.dni %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @student.code %>
+</p>
+
+<ul>
+	<li>Lista de cursos</li>
+	<% @student.enrollments.each do |a| %>
+		<li><%= a.course_assignment.course.name %> con <%= a.course_assignment.teacher.user.name %></li>
+	<% end %>
+</ul>
+
+<table>
+	<tr>
+		<td>Nombre Curso</td>
+		<td>Docente</td>
+		<td>Primera practica</td>
+		<td>Segunda Practica</td>
+		<td>Tercera Practica</td>
+		<td>Primer Parcial</td>
+		<td>Segundo Parcial</td>
+		<td>Evaluacion Permanente</td>
+		<td>Promedio</td>
+		<td>Editar</td>
+	</tr>
+	
+	<% @student.enrollments.each do |a| %>
+	<tr>
+		<td><%= a.course_assignment.course.name %></td>
+		<td><%= a.course_assignment.teacher.user.name %></td>
+		<% if Note.where(enrollment: a, note_type_id: 1).exists?  %>
+		<td><%= Note.where(enrollment: a, note_type_id: 1).last.value %></td>
+		<% else %>
+		<td></td>
+		<% end %>
+		<% if Note.where(enrollment: a, note_type_id: 2).exists?  %>
+		<td><%= Note.where(enrollment: a, note_type_id: 2).last.value %></td>
+		<% else %>
+		<td></td>
+		<% end %>
+		<% if Note.where(enrollment: a, note_type_id: 3).exists?  %>
+		<td><%= Note.where(enrollment: a, note_type_id: 3).last.value %></td>
+		<% else %>
+		<td></td>
+		<% end %>
+		<% if Note.where(enrollment: a, note_type_id: 4).exists?  %>
+		<td><%= Note.where(enrollment: a, note_type_id: 4).last.value %></td>
+		<% else %>
+		<td></td>
+		<% end %>
+		<% if Note.where(enrollment: a, note_type_id: 5).exists?  %>
+		<td><%= Note.where(enrollment: a, note_type_id: 5).last.value %></td>
+		<% else %>
+		<td></td>
+		<% end %>
+		<% if Note.where(enrollment: a, note_type_id: 6).exists?  %>
+		<td><%= Note.where(enrollment: a, note_type_id: 6).last.value %></td>
+		<% else %>
+		<td></td>
+		<% end %>
+		<td>0</td>
+		<% if current_user.user_type_id == 2 or current_user.user_type_id == 4 %>
+		<td><%= link_to 'Editar', asign_notes_path(enrollment_id: a.id) %></td>
+		<% end %>
+	<% end %>
+	</tr>	
+</table>
+
+<%= link_to 'Edit', edit_student_path(@student) %> |
+<%= link_to 'Back', students_path %>

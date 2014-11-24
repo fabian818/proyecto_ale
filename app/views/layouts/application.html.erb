@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Intranet</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<% if session[:status] %>
+Logueado como <%= User.find(session[:user_id]).username %><%= link_to 'Cerrar Sesion', controller: 'security', action: 'logout' %>
+<% end %>
+<%= yield %>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, 'Nombre' %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :lastname, 'Apellidos' %><br>
+    <%= f.text_field :lastname %>
+  </div>
+  <div class="field">
+    <%= f.label :dni %><br>
+    <%= f.text_field :dni %>
+  </div>
+  <div class="field">
+    <%= f.label :username ,  'Nombre de Usuario'%><br>
+    <%= f.text_field :username %>
+  </div>
+  <div class="field">
+    <%= f.label :password, 'Contraseña' %><br>
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :user_type_id, 'Tipo de Usuario' %><br>
+    <%= f.select :user_type_id , options_from_collection_for_select(@user_types, :id, :name) %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :student_code, 'Codigo Universitario' %><br>
+    <%= text_field_tag :student_code %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :teacher_code, 'Codigo de Docente' %><br>
+    <%= text_field_tag :teacher_code %>
+  </div
+  <div class="actions">
+    <%= f.submit 'Ingresar' %>
+  </div>
+<% end %>

@@ -1,0 +1,50 @@
+<h1>Listing users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Lastname</th>
+      <th>Dni</th>
+      <th>Username</th>
+      <th>Password</th>
+      <th>User type</th>
+      <th>Codigo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.lastname %></td>
+        <td><%= user.dni %></td>
+        <td><%= user.username %></td>
+        <td><%= user.password %></td>
+        <td><%= user.user_type.name %></td>
+        <% if user.user_type.id == 2  %>
+          <td></td>
+          <td><%= link_to 'Show', user %></td>
+        <% end %>
+
+        <% if user.user_type.id == 3  %>
+          <td><%= user.student.code %></td>
+          <td><%= link_to 'Show', user.student %></td>
+        <% end %>
+
+        <% if user.user_type.id == 4  %>
+          <td><%= user.teacher.code %></td>
+          <td><%= link_to 'Show', user.teacher %></td>
+        <% end %>
+        
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_user_path %>

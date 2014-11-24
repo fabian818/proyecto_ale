@@ -1,0 +1,47 @@
+<%= form_tag( create_notes_path, method: 'post') do %>
+	<%= hidden_field_tag :enrollment_id, params[:enrollment_id] %>
+	<%= label_tag :note_1, 'Nota de primera practica' %>
+	<% if Note.where(enrollment_id: params[:enrollment_id], note_type_id: 1).exists? %>
+	<%= text_field_tag :note_1, Note.where(enrollment_id: params[:enrollment_id], note_type_id: 1).last.value.to_s %>
+	<% else %>
+	<%= text_field_tag :note_1 %>
+	<% end %>
+
+	<br>
+	<%= label_tag :note_2, 'Nota de segunda practica' %>
+	<% if Note.where(enrollment_id: params[:enrollment_id], note_type_id: 2).exists? %>
+	<%= text_field_tag :note_2, Note.where(enrollment_id: params[:enrollment_id], note_type_id: 2).last.value.to_s  %>
+	<% else %>
+	<%= text_field_tag :note_2 %>
+	<% end %>
+	<br>
+	<%= label_tag :note_3, 'Nota de tercera practica' %>
+	<% if Note.where(enrollment_id: params[:enrollment_id], note_type_id: 3).exists? %>
+	<%= text_field_tag :note_3, Note.where(enrollment_id: params[:enrollment_id], note_type_id: 3).last.value.to_s  %>
+	<% else %>
+	<%= text_field_tag :note_3 %>
+	<% end %>
+	<br>
+	<%= label_tag :note_5, 'Nota de primer parcial' %>
+	<% if Note.where(enrollment_id: params[:enrollment_id], note_type_id: 4).exists? %>
+	<%= text_field_tag :note_4, Note.where(enrollment_id: params[:enrollment_id], note_type_id: 4).last.value.to_s  %>
+	<% else %>
+	<%= text_field_tag :note_4 %>
+	<% end %>
+	<br>
+	<%= label_tag :note_5, 'Nota de segundo parcial' %>
+	<% if Note.where(enrollment_id: params[:enrollment_id], note_type_id: 5).exists? %>
+	<%= text_field_tag :note_5, Note.where(enrollment_id: params[:enrollment_id], note_type_id: 5).last.value.to_s  %>
+	<% else %>
+	<%= text_field_tag :note_5 %>
+	<% end %>
+	<br>
+	<%= label_tag :note_6, 'Nota de evaluacion permanente' %>
+	<% if Note.where(enrollment_id: params[:enrollment_id], note_type_id: 6).exists? %>
+	<%= text_field_tag :note_6, Note.where(enrollment_id: params[:enrollment_id], note_type_id: 6).last.value.to_s  %>
+	<% else %>
+	<%= text_field_tag :note_6 %>
+	<% end %>
+	<br>
+	<%= submit_tag 'Ingresar' %>
+<% end %>
